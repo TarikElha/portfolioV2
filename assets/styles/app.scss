@@ -1,0 +1,30 @@
+:root {    
+    --backgroundColorDark: #282828; /* var(--backgroundColorDark) */
+    --textColorDark: #ffffff;
+    --backgroundColorWhite: #f2eee9;
+    --textColorWhite: #000000;
+  }
+
+body{
+    background-color: var(--backgroundColorDark);
+    color: var(--textColorDark);
+}
+
+ul{
+    list-style-type: none;
+}
+
+ul h1{
+    margin: 0;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.projectPictures{
+    margin: 3rem;
+    display: flex;
+    justify-content: space-between;
+}
