@@ -1,3 +1,14 @@
+//Environment style
+
+@font-face {
+	font-family: 'Cormorant';
+	src: url('./fonts/Cormorant_Infant_SemiBold_600.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Archivo';
+	src: url('./fonts/Archivo_ExtraLight.ttf') format('truetype');
+}
+
 :root {    
     --backgroundColorDark: #282828; /* var(--backgroundColorDark) */
     --textColorDark: #ffffff;
@@ -8,23 +19,85 @@
 body{
     background-color: var(--backgroundColorDark);
     color: var(--textColorDark);
+    font-family: 'Archivo', sans-serif;
+    margin: 1rem;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.title{
+    font-family: 'Cormorant', sans-serif;
 }
 
 ul{
     list-style-type: none;
 }
 
-ul h1{
-    margin: 0;
+a{
+    text-decoration: none;
+    color: var(--textColorDark);
 }
 
+//Header
 .header{
     display: flex;
     justify-content: space-between;
 }
 
+.contactHeader{
+    align-self: center;
+    margin-bottom: 3px;
+}
+
+.titleHeader{
+    font-size: xx-large;
+    align-self: flex-end;
+}
+
+//Projects on homepage
 .projectPictures{
     margin: 3rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.projectPictures li{
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.projectPictures li:hover{
+    -webkit-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
+.projectPictures li img{
+    border-radius: 0.5rem;
+}
+
+//About me on homepage
+
+.aboutMeDescription{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    align-items: start;
+}
+
+.about, .me{
+    font-size: 7rem;
+}
+
+.about{
+    text-align: right;
+    margin-right: 15vw;
+}
+
+.aboutMeDescription p{
+    margin: 3rem;
 }
