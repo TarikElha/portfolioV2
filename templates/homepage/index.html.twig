@@ -6,10 +6,22 @@
     <div class="projectPictures">
         {% for project in projects %}
             {% set imageUrl = project.images|first.url %}
-            <div class="projectPicture"><img src="{{ asset(imageUrl) }}" alt="image project"></div>
-            {# {{ dump(project.images|first.url) }} #}   
+            <div class="projectPicture"><img class="imgProject"
+                                            data-title="{{ project.title }}"
+                                            data-description="{{ project.description }}"
+                                            data-image-url="{{ imageUrl }}"
+                                            data-date="{{ project.date|date('m/Y') }}"
+                                            src="{{ asset(imageUrl) }}"
+                                            alt="project picture">
+            </div>
+            {# {{ dump(project.date|date('Y-m-d')) }} #}
         {% endfor %}
     </div>
+    <aside class="modal">
+        <div class="modalContent">
+            <span class="closeModal">X</span>
+        </div>
+    </aside>
     <section class="aboutMe">
         <div class="about title">About</div>
         <div class="aboutMeDescription">
