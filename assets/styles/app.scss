@@ -58,27 +58,42 @@ a{
 }
 
 //Projects on homepage
-.projectPictures{
+/* .projectPictures{
     margin: 3rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
+} */
+
+.projectPictures{
+    display: grid;
+    grid-gap: 4rem;
+    grid-template-columns: repeat(auto-fill, 150px);
+    
+    justify-content: center;
+    align-items: center;
+
+    margin: 15vh;
 }
 
-.projectPictures li{
-    -webkit-transform: scale(1);
-	transform: scale(1);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
+.projectPicture {
+    overflow: hidden; /* empêcher l'image de dépasser du bloc*/
+    display: block;
 }
 
-.projectPictures li:hover{
-    -webkit-transform: scale(1.2);
+.projectPicture img:hover {
 	transform: scale(1.2);
 }
 
-.projectPictures li img{
-    border-radius: 0.5rem;
+.projectPicture img{
+	transform: scale(1);
+	transition: .5s ease-in-out;
+
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+
+    will-change: transform;
 }
 
 //About me on homepage

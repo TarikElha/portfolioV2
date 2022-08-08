@@ -3,14 +3,13 @@
 {% block title %}elHa{% endblock %}
 
 {% block body %}
-    <ul class="projectPictures">
-        <li><img src="{{ asset('build/images/clients/wcs.png') }}" alt="image1" width="150"></li>
-        <li><img src="{{ asset('build/images/Hackaton1/hackaton1_1.png') }}" alt="image2" width="150"></li>
-        <li><img src="{{ asset('build/images/Projet2/projet2_1.png') }}" alt="image3" width="150"></li>
-        <li><img src="{{ asset('build/images/Projet3/QC.png') }}" alt="image4" width="150"></li>
-        <li><img src="{{ asset('build/images/clients/gaea21.jpg') }}" alt="image5" width="150"></li>
-        <li><img src="{{ asset('build/images/clients/manomano.jpg') }}" alt="image6" width="150"></li>
-    </ul>
+    <div class="projectPictures">
+        {% for project in projects %}
+            {% set imageUrl = project.images|first.url %}
+            <div class="projectPicture"><img src="{{ asset(imageUrl) }}" alt="image project"></div>
+            {# {{ dump(project.images|first.url) }} #}   
+        {% endfor %}
+    </div>
     <section class="aboutMe">
         <div class="about title">About</div>
         <div class="aboutMeDescription">
