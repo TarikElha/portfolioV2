@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+    <h1 class="title">Administration</h1>
+    <ul class="adminIndex">
+        <li><a href="{{ path('project_index') }}">Mes projets</a></li>
+        <li>Mes catégories</li>
+        <li><a href="{{ path('website_index') }}">Mon site</a></li>
+    </ul>
+{% endblock %}
