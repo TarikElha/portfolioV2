@@ -1,9 +1,9 @@
-{# {{ form_start(form) }}
+{{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }} #}
+{{ form_end(form) }}
 
-{{ form_start(form) }}
+{# {{ form_start(form) }}
 
 {{ form_label(form.title, 'Titre', {'label_attr': {'class': 'formLabel'}}) }}
 {{ form_widget(form.title, {'attr': { 'class': 'formInput' }}) }}
@@ -25,7 +25,7 @@
 {{ form_widget(form.aboutme, {'attr': { 'class': 'formInput' }}) }}
 {{ form_errors(form.aboutme, {'attr': { 'class': 'formErrors' }}) }}
 
-{{ form_end(form) }}
+{{ form_end(form) }} #}
 
 
 {# 
