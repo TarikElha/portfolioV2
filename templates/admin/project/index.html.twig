@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projets{% endblock %}
+
+{% block body %}
+    <h1>Projets</h1>
+
+    <table class="projectTab">
+        <thead class="projectTabHead">
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody class="projectTabRow">
+        {% for project in projects %}
+            <tr>
+                {% set imageUrl = project.images|first.url %}
+                <td><img src="{{ asset(imageUrl) }}" alt="project picture"></td>
+                <td>{{ project.title }}</td>
+                <td>{{ project.description }}</td>
+                <td>{{ project.date ? project.date|date('m/Y') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_project_show', {'id': project.id}) }}">Visualiser</a>
+                    <a href="{{ path('app_project_edit', {'id': project.id}) }}">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun projet</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('project_new') }}">Ajouter un projet</a>
+{% endblock %}

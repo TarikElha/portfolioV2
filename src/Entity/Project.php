@@ -30,10 +30,14 @@ class Project
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'projects')]
     private $categories;
 
+    #[ORM\OneToMany(mappedBy: 'project', targetEntity: Source::class, orphanRemoval: true)]
+    private $sources;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->sources = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,6 +131,36 @@ class Project
     public function removeCategory(Category $category): self
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Source>
+     */
+    public function getSources(): Collection
+    {
+        return $this->sources;
+    }
+
+    public function addSource(Source $source): self
+    {
+        if (!$this->sources->contains($source)) {
+            $this->sources[] = $source;
+            $source->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSource(Source $source): self
+    {
+        if ($this->sources->removeElement($source)) {
+            // set the owning side to null (unless already changed)
+            if ($source->getProject() === $this) {
+                $source->setProject(null);
+            }
+        }
 
         return $this;
     }

@@ -1,0 +1,45 @@
+{# {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }} #}
+
+{{ form_start(form) }}
+
+{{ form_label(form.title, 'Titre', {'label_attr': {'class': 'formLabel'}}) }}
+{{ form_widget(form.title, {'attr': { 'class': 'formInput' }}) }}
+{{ form_errors(form.title, {'attr': { 'class': 'formErrors' }}) }}
+
+{{ form_label(form.biglogo, 'Grand logo', {'label_attr': {'class': 'formLabel'}}) }}
+{{ form_widget(form.biglogo, {'attr': { 'class': 'formInput' }}) }}
+{{ form_errors(form.biglogo, {'attr': { 'class': 'formErrors' }}) }}
+
+{{ form_label(form.littlelogo, 'Petit logo', {'label_attr': {'class': 'formLabel'}}) }}
+{{ form_widget(form.littlelogo, {'attr': { 'class': 'formInput' }}) }}
+{{ form_errors(form.littlelogo, {'attr': { 'class': 'formErrors' }}) }}
+
+{{ form_label(form.typeportfolio, 'Type de portfolio', {'label_attr': {'class': 'formLabel'}}) }}
+{{ form_widget(form.typeportfolio, {'attr': { 'class': 'formInput' }}) }}
+{{ form_errors(form.typeportfolio, {'attr': { 'class': 'formErrors' }}) }}
+
+{{ form_label(form.aboutme, 'Présentation', {'label_attr': {'class': 'formLabel'}}) }}
+{{ form_widget(form.aboutme, {'attr': { 'class': 'formInput' }}) }}
+{{ form_errors(form.aboutme, {'attr': { 'class': 'formErrors' }}) }}
+
+{{ form_end(form) }}
+
+
+{# 
+    titre
+    biglogo
+    litlle logo
+    type portfolio
+
+    {{ form_label{form.title, 'Titre'} }}
+    {{ form_widget{form.title, {'attr': { 'class': 'formWebsite' }}} }}
+    {{ form_errors{form.title} }}
+
+    OU
+
+    {{ <div class="">form_row{form.title} }}</div> 
+
+#}
