@@ -224,22 +224,20 @@ button {
     line-height: 24pt;
     padding: 0 20px;
     border: none;
-    background: #f45702;
-    color: white;
+    border-radius: 1rem;
+    background: var(--backgroundColorWhite);
+    color: var(--textColorWhite);
     letter-spacing: 2px;
     transition: 0.2s all ease-in-out;
     border-bottom: 2px solid transparent;
     outline: none;
+    margin: 2rem;
 }
 
 button:hover {
     background: inherit;
     color: #f45702;
     border-bottom: 2px solid #f45702;
-}
-  
-::selection {
-    background: #ffc7b8;
 }
   
 input:-webkit-autofill,
@@ -251,4 +249,20 @@ textarea:-webkit-autofill:focus {
     border: 1px solid #6bd4b1;
     -webkit-text-fill-color: #2A293E;
     transition: background-color 5000s ease-in-out 0s;
-    }
+}
+
+//Admin project index7
+.projectTab{
+    border-collapse: collapse;
+    margin: 3rem;
+}
+
+.projectTabRow tr td img{
+    width: 15vw;
+    height: auto;
+}
+
+th, td{
+    border: 2px solid var(--backgroundColorWhite);
+    padding: 1rem;
+}
