@@ -16,15 +16,17 @@ class WebsiteController extends AbstractController
     #[Route('/', name: 'website_index', methods: ['GET'])]
     public function index(WebsiteRepository $websiteRepository, Request $request): Response
     {
-        $website = $websiteRepository->findAll()[0];
+        $website = $websiteRepository->findAll();
+        $form = null;
+        if($website){
+            $form = $this->createForm(WebsiteType::class, $website[0]);
+            $form->handleRequest($request);
 
-        $form = $this->createForm(WebsiteType::class, $website);
-        $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $websiteRepository->add($website, true);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $websiteRepository->add($website, true);
-
-            return $this->redirectToRoute('website_index', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('website_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->renderForm('admin/website/index.html.twig', [
@@ -47,7 +49,7 @@ class WebsiteController extends AbstractController
             return $this->redirectToRoute('website_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('website/new.html.twig', [
+        return $this->renderForm('admin/website/new.html.twig', [
             'website' => $website,
             'form' => $form,
         ]);
