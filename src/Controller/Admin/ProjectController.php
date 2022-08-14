@@ -31,16 +31,16 @@ class ProjectController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $projectRepository->add($project, true);
 
-            return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('project_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('project/new.html.twig', [
+        return $this->renderForm('admin/project/new.html.twig', [
             'project' => $project,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_project_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'project_show', methods: ['GET'])]
     public function show(Project $project): Response
     {
         return $this->render('admin/project/show.html.twig', [
@@ -48,7 +48,7 @@ class ProjectController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_project_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'project_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Project $project, ProjectRepository $projectRepository): Response
     {
         $form = $this->createForm(ProjectType::class, $project);
@@ -57,7 +57,7 @@ class ProjectController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $projectRepository->add($project, true);
 
-            return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('project_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin/project/edit.html.twig', [
@@ -66,13 +66,13 @@ class ProjectController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_project_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'project_delete', methods: ['POST'])]
     public function delete(Request $request, Project $project, ProjectRepository $projectRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
             $projectRepository->remove($project, true);
         }
 
-        return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('project_index', [], Response::HTTP_SEE_OTHER);
     }
 }
