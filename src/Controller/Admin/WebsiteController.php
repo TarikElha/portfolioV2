@@ -16,10 +16,12 @@ class WebsiteController extends AbstractController
     #[Route('/', name: 'website_index', methods: ['GET'])]
     public function index(WebsiteRepository $websiteRepository, Request $request): Response
     {
-        $website = $websiteRepository->findAll();
+        $website = null;
+        if(isset($websiteRepository->findAll()[0]))
+            $website = $websiteRepository->findAll()[0];
         $form = null;
         if($website){
-            $form = $this->createForm(WebsiteType::class, $website[0]);
+            $form = $this->createForm(WebsiteType::class, $website);
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
