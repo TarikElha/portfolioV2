@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}Categories{% endblock %}
 
 {% block body %}
-    <h1>Categories</h1>
+    <h1 class="title">Categories</h1>
 
-    <ul>
+    <div class="buttonsNav">
+        <a href="{{ path('category_new') }}">Ajouter une catégorie</a>
+    </div>
+
+    <ul class="categoryIndex">
         {% for category in categories %}
             <li>
                 <a href="{{ path('category_edit', {'id': category.id}) }}">{{ category.name }}</a>
@@ -16,6 +20,7 @@
             </tr>
         {% endfor %}
     </ul>
-    <div><a href="{{ path('admin') }}">Retour à l'acceuil</a></div>
-    <a href="{{ path('category_new') }}">Ajouter une catégorie</a>
+    <div class="buttonsNav">
+        <a href="{{ path('admin') }}">Retour à l'accueil</a>
+    </div>
 {% endblock %}
