@@ -5,8 +5,12 @@
 {% block body %}
     <h1 class="title">Administration</h1>
     <ul class="adminIndex">
-        <li><a href="{{ path('project_index') }}">Mes projets</a></li>
-        <li><a href="{{ path('category_index') }}">Mes catégories</a></li>
-        <li><a href="{{ path('website_index') }}">Mon site</a></li>
+        <li class="buttonsNav adminIndexElement"><a href="{{ path('project_index') }}">Mes projets</a></li>
+        <li class="buttonsNav adminIndexElement"><a href="{{ path('category_index') }}">Mes catégories</a></li>
+        <li class="buttonsNav adminIndexElement"><a href="{{ path('website_index') }}">Mon site</a></li>
     </ul>
+
+    <div class="buttonsNav linkAdminToHomepage">
+        <a href="{{ path('homepage') }}">Page d'accueil du portfolio</a>
+    </div>
 {% endblock %}

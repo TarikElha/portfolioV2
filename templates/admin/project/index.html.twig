@@ -3,7 +3,11 @@
 {% block title %}Projets{% endblock %}
 
 {% block body %}
-    <h1>Projets</h1>
+    <h1 class="title">Projets</h1>
+
+    <div class="buttonsNav">
+        <a href="{{ path('project_new') }}">Ajouter un projet</a>
+    </div>
 
     <table class="projectTab">
         <thead class="projectTabHead">
@@ -24,8 +28,12 @@
                 <td>{{ project.description }}</td>
                 <td>{{ project.date ? project.date|date('m/Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('project_show', {'id': project.id}) }}">Visualiser</a>
-                    <a href="{{ path('project_edit', {'id': project.id}) }}">Editer</a>
+                    <div class="buttonsNav">
+                        <a href="{{ path('project_show', {'id': project.id}) }}">Visualiser</a>
+                    </div>
+                    <div class="buttonsNav">
+                        <a href="{{ path('project_edit', {'id': project.id}) }}">Editer</a>
+                    </div>
                 </td>
             </tr>
         {% else %}
@@ -36,6 +44,7 @@
         </tbody>
     </table>
 
-    <div><a href="{{ path('project_new') }}">Ajouter un projet</a></div>
-    <div><a href="{{ path('admin') }}">Retour à l'acceuil</a></div>
+    <div class="buttonsNav">
+        <a href="{{ path('admin') }}">Retour à l'accueil</a>
+    </div>
 {% endblock %}

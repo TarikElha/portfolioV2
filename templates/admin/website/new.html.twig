@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Website{% endblock %}
+{% block title %}Création du portfolio{% endblock %}
 
 {% block body %}
-    <h1>Create new Website</h1>
+    <h1 class="title">Création du portfolio</h1>
 
     {{ include('admin/website/_form.html.twig') }}
 
-    <a href="{{ path('website_index') }}">back to list</a>
+    <div class="buttonsNav">
+        <a href="{{ path('website_index') }}">Portfolio</a>
+    </div>
 {% endblock %}
