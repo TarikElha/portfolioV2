@@ -1,0 +1,18 @@
+vich_uploader:
+    db_driver: orm
+    metadata:
+        type: attribute
+
+    mappings:
+        portfolio_file:
+            # alias qui nous permet d'accéder à nos images depuis le navigateur
+            uri_prefix: /uploads/portfolio
+            # Chemin vers le dossier de stockage
+            upload_destination: '%upload_directory_portfolio%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        project_file:
+            # alias qui nous permet d'accéder à nos images depuis le navigateur
+            uri_prefix: /uploads/projects
+            # Chemin vers le dossier de stockage
+            upload_destination: '%upload_directory_projects%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

@@ -4,8 +4,12 @@ namespace App\Entity;
 
 use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+//Ici on importe le package Vich, que l’on utilisera sous l’alias “Vich”
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
+#[Vich\Uploadable]
 class Image
 {
     #[ORM\Id]
@@ -15,6 +19,9 @@ class Image
 
     #[ORM\Column(type: 'string', length: 255)]
     private $url;
+
+    #[Vich\UploadableField(mapping: 'project_file', fileNameProperty: 'url')]
+    private File $urlFile;
 
     #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'images')]
     private $project;
@@ -46,5 +53,16 @@ class Image
         $this->project = $project;
 
         return $this;
+    }
+
+    public function setUrlFile(File $image = null): Image
+    {
+        $this->urlFile = $image;
+        return $this;
+    }
+
+    public function getUrlFile(): ?File
+    {
+        return $this->urlFile;
     }
 }
