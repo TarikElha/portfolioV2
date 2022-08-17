@@ -6,6 +6,7 @@ use App\Entity\Website;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class WebsiteType extends AbstractType
 {
@@ -13,8 +14,16 @@ class WebsiteType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('biglogo')
-            ->add('littlelogo')
+            ->add('biglogoFile', VichFileType::class, [
+                'required'      => true,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+            ])
+            ->add('littlelogoFile', VichFileType::class, [
+                'required'      => true,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+            ])
             ->add('typeportfolio')
             ->add('aboutme')
         ;
