@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/website')]
 class WebsiteController extends AbstractController
 {
-    #[Route('/', name: 'website_index', methods: ['GET'])]
+    #[Route('/', name: 'website_index', methods: ['GET', 'POST'])]
     public function index(WebsiteRepository $websiteRepository, Request $request): Response
     {
         $website = null;

@@ -5,22 +5,29 @@
 {% block body %}
     <h1 class="title">{{ project.title }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Title</th>
-                <td>{{ project.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ project.description }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ project.date ? project.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="projectShowHeader">
+        <h2>Description</h2>
+        <p class="projectShowHeaderContent">{{ project.description }}</p>
+
+        <h2 class="title">Date</h2>
+        <p class="projectShowHeaderContent">{{ project.date ? project.date|date('Y-m-d H:i:s') : '' }}</p>
+        
+        <h2 class="title">Catégorie</h2>
+        <ul class="projectShowHeaderContent">
+            {% for category in project.categories %}
+                <li>{{ category.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="projectGaleryShow">
+        <h2 class="title">Galerie</h2>
+        <ul>
+            {% for image in project.images %}
+                <li><img class="showProjectImage" src="{{asset(image.url)}}" alt="Gallerie image projet"></li>
+            {% endfor %}
+        </ul>
+    </div>
 
     <div class="buttonsNav">
         <a href="{{ path('project_index') }}">Liste des projets</a>
