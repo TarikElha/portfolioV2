@@ -38,7 +38,7 @@ class Website
 
     #[Vich\UploadableField(mapping: 'portfolio_file', fileNameProperty: 'littlelogo')]
     #[Assert\File(
-        maxSize: '3M',
+        maxSize: '4M',
         mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/svg'],
     )]
     private File $littlelogoFile;

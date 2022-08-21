@@ -184,7 +184,7 @@ a{
 }
 
 //Formulaire edit website + new project
-label, input, textarea, #project_date, #project_categories {
+label, input, textarea, #project_date, #project_categories, .logoLabel{
     display: block;
     width: 60%;
     font-size: 1rem;
@@ -291,4 +291,48 @@ th, td{
 
 .linkAdminToHomepage{
     margin-top: 40vh;
+}
+
+//Upload form style
+.vich-file div, .vich-file a{
+    display: none;
+}
+
+.vich-file input{
+    color: black;
+}
+
+.logo_formulaire{
+    width: 30vh;
+    height: auto;
+}
+
+.logoLabel{
+    display: flex;
+    align-items: center;
+}
+
+.logoLabel input{
+    width: 30vw;
+    margin-left: 3rem;
+}
+
+//Show project
+.showProjectImage{
+    width: 80vw;
+    height: auto;
+}
+
+.projectGaleryShow{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.showProjectImage, .projectShowHeader{
+    margin: 2rem;
+}
+
+.projectShowHeaderContent{
+    padding: 2rem;
 }

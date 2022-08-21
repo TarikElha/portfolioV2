@@ -1,21 +1,30 @@
-{{ form_start(form) }}
+{# {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Enregistrer') }}</button>
-{{ form_end(form) }}
+{{ form_end(form) }} #}
 
-{# {{ form_start(form) }}
+
+{# <img src="{{ vich_uploader_asset(website) }}" alt="{{ website.title }}"> #}
+
+{{ form_start(form) }}
 
 {{ form_label(form.title, 'Titre', {'label_attr': {'class': 'formLabel'}}) }}
 {{ form_widget(form.title, {'attr': { 'class': 'formInput' }}) }}
 {{ form_errors(form.title, {'attr': { 'class': 'formErrors' }}) }}
 
-{{ form_label(form.biglogo, 'Grand logo', {'label_attr': {'class': 'formLabel'}}) }}
-{{ form_widget(form.biglogo, {'attr': { 'class': 'formInput' }}) }}
-{{ form_errors(form.biglogo, {'attr': { 'class': 'formErrors' }}) }}
+{{ form_label(form.biglogoFile, 'Grand logo', {'label_attr': {'class': 'formLabel'}}) }}
+<div class="logoLabel">
+    <img class="logo_formulaire" src="../../uploads/portfolio/{{ website.biglogo }}" alt="Image grand logo">
+    {{ form_widget(form.biglogoFile, {'attr': { 'class': 'formInput' }}) }}
+</div>
+{{ form_errors(form.biglogoFile, {'attr': { 'class': 'formErrors' }}) }}
 
-{{ form_label(form.littlelogo, 'Petit logo', {'label_attr': {'class': 'formLabel'}}) }}
-{{ form_widget(form.littlelogo, {'attr': { 'class': 'formInput' }}) }}
-{{ form_errors(form.littlelogo, {'attr': { 'class': 'formErrors' }}) }}
+{{ form_label(form.littlelogoFile, 'Petit logo', {'label_attr': {'class': 'formLabel'}}) }}
+<div class="logoLabel">
+    <img class="logo_formulaire" src="../../uploads/portfolio/{{ website.littlelogo }}" alt="Image petit logo">
+    {{ form_widget(form.littlelogoFile, {'attr': { 'class': 'formInput' }}) }}
+</div>
+{{ form_errors(form.littlelogoFile, {'attr': { 'class': 'formErrors' }}) }}
 
 {{ form_label(form.typeportfolio, 'Type de portfolio', {'label_attr': {'class': 'formLabel'}}) }}
 {{ form_widget(form.typeportfolio, {'attr': { 'class': 'formInput' }}) }}
@@ -25,7 +34,9 @@
 {{ form_widget(form.aboutme, {'attr': { 'class': 'formInput' }}) }}
 {{ form_errors(form.aboutme, {'attr': { 'class': 'formErrors' }}) }}
 
-{{ form_end(form) }} #}
+<button class="btn">{{ button_label|default('Enregistrer') }}</button>
+
+{{ form_end(form) }}
 
 
 {# 
