@@ -24,7 +24,7 @@
         <h2 class="title">Galerie</h2>
         <ul>
             {% for image in project.images %}
-                <li><img class="showProjectImage" src="{{asset(image.url)}}" alt="Gallerie image projet"></li>
+                <li><img class="showProjectImage" src="../../uploads/projects/{{ image.url }}" alt="Gallerie image projet"></li>
             {% endfor %}
         </ul>
     </div>

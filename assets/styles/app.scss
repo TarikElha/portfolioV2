@@ -270,8 +270,9 @@ th, td{
 //Categories index
 
 .categoryIndex{
-    margin: 2rem;
+    margin-left: 5vw;
     font-size: 2rem;
+    list-style-type: circle;
 }
 
 //Boutons de navigations admin
@@ -335,4 +336,29 @@ th, td{
 
 .projectShowHeaderContent{
     padding: 2rem;
+}
+
+.btn_delete_project{
+    background-color: var(--backgroundColorDark);
+    color: var(--textColorDark);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-top: 2rem;
+    font-size: x-large;
+    font-family: "Archivo", sans-serif;
+}
+
+.btn_delete_project:hover{
+    color: #f45702;
+    cursor: pointer;
+}
+
+.buttonsProjectIndex{
+    padding-bottom: 2rem;
+}
+
+.numberImage{
+    margin: 1rem;
+    font-size: larger;
 }

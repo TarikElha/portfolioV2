@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gallerie{% endblock %}
+
+{% block body %}
+    <h1 class="title">Gallerie</h1>
+
+{#     <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Url</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for image in images %}
+            <tr>
+                <td>{{ image.id }}</td>
+                <td>{{ image.url }}</td>
+                <td>
+                    <a href="{{ path('image_show', {'id': image.id}) }}">show</a>
+                    <a href="{{ path('image_edit', {'id': image.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table> #}
+
+    <div class="buttonsNav">
+        <a href="{{ path('image_new', { project : project.id }) }}">Ajouter une image</a>
+    </div>
+
+    {% if images is defined %}
+        <div class="projectGaleryShow">
+            <ul>
+                {% for image in images %}
+                    <p class="title numberImage">Image n°</p>
+                    <li><img class="showProjectImage" src="../../uploads/projects/{{ image.url }}" alt="Gallerie image projet"></li>
+
+                    <form method="post" action="{{ path('image_delete', {'id': image.id}) }}" onsubmit="return confirm('Supprimer cette image ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ image.id) }}">
+                        <input class="btn_delete_project" type="submit" value="Supprimer">
+                    </form>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p>Aucune image</p>
+    {% endif %}
+
+    <div class="buttonsNav">
+        <a href="{{ path('project_edit', { id : project.id }) }}">Edition du projet</a>
+    </div>
+{% endblock %}

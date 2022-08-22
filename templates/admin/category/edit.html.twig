@@ -6,8 +6,10 @@
     <h1>Edition Category</h1>
 
     {{ include('admin/category/_form.html.twig', {'button_label': 'Modifier'}) }}
-
-    <a href="{{ path('category_index') }}">Liste des catégories</a>
-
+    
     {{ include('admin/category/_delete_form.html.twig') }}
+
+    <div class="buttonsNav">
+        <a href="{{ path('category_index') }}">Liste des catégories</a>
+    </div>
 {% endblock %}

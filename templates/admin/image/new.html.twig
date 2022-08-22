@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'une nouvelle image{% endblock %}
+
+{% block body %}
+    <h1 class="title">Ajout d'une nouvelle image</h1>
+
+    {{ include('admin/image/_form.html.twig') }}
+    <div class="buttonsNav">
+        <a href="{{ path('image_project_index', { project : project.id }) }}">Gallerie</a>
+    </div>
+{% endblock %}

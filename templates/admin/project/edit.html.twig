@@ -5,6 +5,10 @@
 {% block body %}
     <h1 class="title">Modifier un projet</h1>
 
+    <div class="buttonsNav">
+        <a href="{{ path('image_project_index', { project : project.id }) }}">Mes images</a>
+    </div>
+
     {{ include('admin/project/_form.html.twig', {'button_label': 'Modifier'}) }}
 
     {{ include('admin/project/_delete_form.html.twig') }}
