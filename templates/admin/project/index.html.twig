@@ -20,31 +20,39 @@
             </tr>
         </thead>
         <tbody class="projectTabRow">
-        {% for project in projects %}
-            <tr>
-                {% set imageUrl = project.images|first.url %}
-                <td><img src="{{ asset(imageUrl) }}" alt="project picture"></td>
-                <td>{{ project.title }}</td>
-                <td>{{ project.description }}</td>
-                <td>{{ project.date ? project.date|date('m/Y') : '' }}</td>
-                <td class="buttonsProjectIndex">
-                    <div class="buttonsNav">
-                        <a href="{{ path('project_show', {'id': project.id}) }}">Visualiser</a>
-                    </div>
-                    <div class="buttonsNav">
-                        <a href="{{ path('project_edit', {'id': project.id}) }}">Editer</a>
-                    </div>
+            {% for project in projects %}
+                <tr>
+                    {% set imageUrl = project.images|first %}
+                    <td>
+                        {% if imageUrl is defined %}
+                            {% set imageUrlLink = '../../uploads/projects/' ~ imageUrl.url %}
+                        {% else %}
+                            {% set imageUrlLink = "https://img.freepik.com/photos-gratuite/fond-bleu-degrade-luxe-abstrait-bleu-fonce-lisse-vignette-noire-studio-banner_1258-82761.jpg?w=1380&t=st=1661137964~exp=1661138564~hmac=d1b4c7ae8f9880b52c2d3f258cd451b371799fdaa956fd8bdc1226cff48cc254" %}
+                        {% endif %}
+                        
+                        <img src="{{ imageUrlLink }}" alt="project picture">
+                    </td>
+                    <td>{{ project.title }}</td>
+                    <td>{{ project.description }}</td>
+                    <td>{{ project.date ? project.date|date('m/Y') : '' }}</td>
+                    <td class="buttonsProjectIndex">
+                        <div class="buttonsNav">
+                            <a href="{{ path('project_show', {'id': project.id}) }}">Visualiser</a>
+                        </div>
+                        <div class="buttonsNav">
+                            <a href="{{ path('project_edit', {'id': project.id}) }}">Editer</a>
+                        </div>
                         <form method="post" action="{{ path('project_delete', {'id': project.id}) }}" onsubmit="return confirm('Supprimer ce projet ?');">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ project.id) }}">
                             <input class="btn_delete_project" type="submit" value="Supprimer">
                         </form>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">Aucun projet</td>
-            </tr>
-        {% endfor %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucun projet</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 

@@ -108,7 +108,6 @@ class ImageController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$image->getId(), $request->request->get('_token'))) {
             $imageRepository->remove($image, true);
         }
-dd($image->getProject()->getId());
         return $this->redirectToRoute('image_project_index', [ 'project' => $image->getProject()->getId() ], Response::HTTP_SEE_OTHER);
     }
 }

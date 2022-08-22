@@ -35,12 +35,13 @@
         <a href="{{ path('image_new', { project : project.id }) }}">Ajouter une image</a>
     </div>
 
-    {% if %}
+    {% if images is defined %}
         <div class="projectGaleryShow">
             <ul>
                 {% for image in images %}
                     <p class="title numberImage">Image n°</p>
                     <li><img class="showProjectImage" src="../../uploads/projects/{{ image.url }}" alt="Gallerie image projet"></li>
+
                     <form method="post" action="{{ path('image_delete', {'id': image.id}) }}" onsubmit="return confirm('Supprimer cette image ?');">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ image.id) }}">
                         <input class="btn_delete_project" type="submit" value="Supprimer">
@@ -49,7 +50,7 @@
             </ul>
         </div>
     {% else %}
-        <p>Aucune images</p>
+        <p>Aucune image</p>
     {% endif %}
 
     <div class="buttonsNav">
