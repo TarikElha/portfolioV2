@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ImageRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
+use App\Repository\ImageRepository;
 //Ici on importe le package Vich, que l’on utilisera sous l’alias “Vich”
+use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 #[Vich\Uploadable]
@@ -21,7 +23,14 @@ class Image
     private $url;
 
     #[Vich\UploadableField(mapping: 'project_file', fileNameProperty: 'url')]
+    #[Assert\File(
+        maxSize: '3M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/svg'],
+    )]
     private File $urlFile;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
 
     #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'images')]
     private $project;
@@ -58,11 +67,28 @@ class Image
     public function setUrlFile(File $image = null): Image
     {
         $this->urlFile = $image;
+
+        if ($image){
+            $this->updatedAt = new DateTime('now');
+        }
+
         return $this;
     }
 
     public function getUrlFile(): ?File
     {
         return $this->urlFile;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }
