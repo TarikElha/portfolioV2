@@ -3,3 +3,9 @@
     <li class="titleHeader title"><h1>elHa</h1></li>
     <li class="contactHeader"><a href="#">CONTACT</a></li>
 </ul>
+{% if app.user %}
+    {{ app.user.email }}
+    <a href="{{ path('app_logout') }}"> Se déconnecter</a>
+{% else %}
+    <a href="{{ path('app_login') }}"> Se connecter</a>
+{% endif %}

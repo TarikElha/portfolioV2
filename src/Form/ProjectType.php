@@ -6,16 +6,32 @@ use App\Entity\Project;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class ProjectType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('description')
-            ->add('date')
-            ->add('categories', null, ['choice_label' => 'name'])
+            ->add('title',null, [
+                'label' => 'Titre',
+            ])
+            ->add('description', null, [
+                'label' => 'Déscription',
+            ])
+            ->add('date', DateType::class, [
+                'label' => 'Date du projet',
+                'placeholder' => [
+                    'year' => 'Année',
+                    'month' => 'Mois',
+                ],
+                'html5' => false,
+                'format' => 'd M y',
+            ])
+            ->add('categories', null, [
+                'choice_label' => 'name',
+                'label' => 'Catégories'
+            ])
         ;
     }
 
