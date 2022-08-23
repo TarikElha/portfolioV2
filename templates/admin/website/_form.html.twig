@@ -12,14 +12,14 @@
 {{ form_widget(form.title, {'attr': { 'class': 'formInput' }}) }}
 {{ form_errors(form.title, {'attr': { 'class': 'formErrors' }}) }}
 
-{{ form_label(form.biglogoFile, 'Grand logo', {'label_attr': {'class': 'formLabel'}}) }}
+{{ form_label(form.biglogoFile, 'Logo principal', {'label_attr': {'class': 'formLabel'}}) }}
 <div class="logoLabel">
     <img class="logo_formulaire" src="../../uploads/portfolio/{{ website.biglogo }}" alt="Image grand logo">
     {{ form_widget(form.biglogoFile, {'attr': { 'class': 'formInput' }}) }}
 </div>
 {{ form_errors(form.biglogoFile, {'attr': { 'class': 'formErrors' }}) }}
 
-{{ form_label(form.littlelogoFile, 'Petit logo', {'label_attr': {'class': 'formLabel'}}) }}
+{{ form_label(form.littlelogoFile, 'Logo miniature', {'label_attr': {'class': 'formLabel'}}) }}
 <div class="logoLabel">
     <img class="logo_formulaire" src="../../uploads/portfolio/{{ website.littlelogo }}" alt="Image petit logo">
     {{ form_widget(form.littlelogoFile, {'attr': { 'class': 'formInput' }}) }}

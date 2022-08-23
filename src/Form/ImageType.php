@@ -4,9 +4,10 @@ namespace App\Form;
 
 use App\Entity\Image;
 use Symfony\Component\Form\AbstractType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichFileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class ImageType extends AbstractType
 {
@@ -14,10 +15,14 @@ class ImageType extends AbstractType
     {
         $builder
             ->add('urlFile', VichFileType::class, [
+                'label' => 'Sélectionner une image',
                 'required'      => true,
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
             ])
+            /* ->add('position', IntegerType::class, [
+                'label' => 'Position de l\'image dans la gallerie',
+            ]) */
         ;
     }
 
