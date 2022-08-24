@@ -65,7 +65,7 @@ class SourceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_source_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'source_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Source $source, SourceRepository $sourceRepository): Response
     {
         $form = $this->createForm(SourceType::class, $source);
@@ -74,10 +74,10 @@ class SourceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $sourceRepository->add($source, true);
 
-            return $this->redirectToRoute('app_source_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('source_project_index', [ 'project' => $source->getProject()->getId() ], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('source/edit.html.twig', [
+        return $this->renderForm('admin/source/edit.html.twig', [
             'source' => $source,
             'form' => $form,
         ]);

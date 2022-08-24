@@ -22,10 +22,15 @@
                                 <h2 class="title">Adresse url :</h2> <p>{{source.url}}</p>
                             </div>
                         {% endif %}
-                        <form method="post" action="{{ path('source_delete', {'id': source.id}) }}" onsubmit="return confirm('Supprimer cette image ?');">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ source.id) }}">
-                            <input class="btn_delete_project" type="submit" value="Supprimer">
-                        </form>
+                        <div class="editSourceButton">
+                            <div class="buttonsNav">
+                                <a href="{{ path('source_edit', { id : source.id }) }}">Editer</a>
+                            </div>
+                            <form method="post" action="{{ path('source_delete', {'id': source.id}) }}" onsubmit="return confirm('Supprimer cette source ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ source.id) }}">
+                                <input class="btn_delete_project" type="submit" value="Supprimer">
+                            </form>
+                        </div>
                     </li>
                 {% endfor %}
             </ul>

@@ -8,6 +8,12 @@
     <div class="buttonsNav">
         <a href="{{ path('project_new') }}">Ajouter un projet</a>
     </div>
+    <div class="searchProject">
+        {{ form_start(form) }}
+        <button class="buttonSearchProject">Rechercher</button>
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
 
     <table class="projectTab">
         <thead class="projectTabHead">

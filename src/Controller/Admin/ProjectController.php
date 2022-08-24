@@ -4,20 +4,35 @@ namespace App\Controller\Admin;
 
 use App\Entity\Project;
 use App\Form\ProjectType;
+use App\Form\SearchProgramType;
+use App\Form\SearchProjectType;
 use App\Repository\ProjectRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/project')]
 class ProjectController extends AbstractController
 {
-    #[Route('/', name: 'project_index', methods: ['GET'])]
-    public function index(ProjectRepository $projectRepository): Response
+    #[Route('/', name: 'project_index', methods: ['GET', 'POST'])]
+    public function index(Request $request, ProjectRepository $projectRepository): Response
     {
+        $form = $this->createForm(SearchProjectType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['search'];
+            $projects = $projectRepository->findLikeName($search);
+        } else {
+            $projects = $projectRepository->findAll();
+        }
+
+
+
         return $this->render('admin/project/index.html.twig', [
-            'projects' => $projectRepository->findAll(),
+            'projects' => $projects,
+            'form' => $form->createView(),
         ]);
     }
 
