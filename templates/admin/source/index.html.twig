@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sources{% endblock %}
+
+{% block body %}
+    <h1>Sources</h1>
+
+   <div class="buttonsNav">
+        <a href="{{ path('source_new', { project : project.id }) }}">Ajouter une source</a>
+    </div>
+
+    {% if sources %}
+        <div class="sourceIndex">
+            <ul>
+                {% for source in sources %}
+                    <li class="sourceElementIndex">
+                        <div>
+                            <h2 class="title">Titre :</h2> <p>{{source.name}}</p>
+                        </div>
+                        {% if source.url %}
+                            <div>
+                                <h2 class="title">Adresse url :</h2> <p>{{source.url}}</p>
+                            </div>
+                        {% endif %}
+                        <form method="post" action="{{ path('source_delete', {'id': source.id}) }}" onsubmit="return confirm('Supprimer cette image ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ source.id) }}">
+                            <input class="btn_delete_project" type="submit" value="Supprimer">
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p>Aucune source pour ce projet</p>
+    {% endif %}
+
+    <div class="buttonsNav">
+        <a href="{{ path('project_edit', { id : project.id }) }}">Edition du projet</a>
+    </div>
+{% endblock %}

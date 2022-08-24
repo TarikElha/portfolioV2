@@ -1,11 +1,13 @@
 <ul class="header">
     <li><img src="{{ asset('build/images/button/lightButton.png') }}" alt="ligthing mode button"></li>
     <li class="titleHeader title"><h1>elHa</h1></li>
-    <li class="contactHeader"><a href="#">CONTACT</a></li>
+    
+    {% if app.request.uri matches '{.*\/admin\/*}' %} 
+        <li class="title">
+            <div>{{ app.user.email }}</div>
+            <a href="{{ path('app_logout') }}"> Se déconnecter</a>
+        </li>
+    {% else %}
+        <li class="contactHeader"><a href="#">CONTACT</a></li>
+    {% endif %}
 </ul>
-{% if app.user %}
-    {{ app.user.email }}
-    <a href="{{ path('app_logout') }}"> Se déconnecter</a>
-{% else %}
-    <a href="{{ path('app_login') }}"> Se connecter</a>
-{% endif %}
