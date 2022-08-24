@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'une nouvelle source{% endblock %}
+
+{% block body %}
+    <h1 class="title">Ajout d'une nouvelle source</h1>
+
+    {{ include('admin/source/_form.html.twig') }}
+    <div class="buttonsNav">
+        <a href="{{ path('source_project_index', { project : project.id }) }}">Les sources du projet</a>
+    </div>
+{% endblock %}

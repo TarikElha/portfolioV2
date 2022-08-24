@@ -387,3 +387,19 @@ th, td{
 #project_date_day{
     display: none;
 }
+
+//Sources
+.sourceElementIndex{
+    margin-left: 30vw;
+    margin-top: 2rem;
+    font-size: larger;
+}
+
+.sourceElementIndex div{
+    display: flex;
+    align-items: center;
+}
+
+.sourceElementIndex h2{
+    margin: 2rem;
+}

@@ -9,6 +9,10 @@
         <a href="{{ path('image_project_index', { project : project.id }) }}">Mes images</a>
     </div>
 
+    <div class="buttonsNav">
+        <a href="{{ path('source_project_index', { project : project.id }) }}">Mes sources</a>
+    </div>
+
     {{ include('admin/project/_form.html.twig', {'button_label': 'Modifier'}) }}
 
     {{ include('admin/project/_delete_form.html.twig') }}
