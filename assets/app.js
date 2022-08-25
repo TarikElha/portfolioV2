@@ -40,7 +40,7 @@ function openModal(e){
 
         headerModalTitle.textContent = imgProjectTitle;
         headerModalDate.textContent = imgProjectDate;
-        mainModalImage.src = imgProjectUrl;
+        mainModalImage.src = "../uploads/projects/" + imgProjectUrl;
         mainModalDescription.textContent = imgProjectDescription;
 
         const modalContent = document.querySelector(".modalContent");
@@ -69,4 +69,32 @@ window.onclick = function(event) {
 function closeModal(){
     document.querySelector(".modalSubContent").remove();
     modal.style.display = "none";
+}
+
+//clique sur dark/light mode button
+document.querySelector('.buttonDarkLightMode').addEventListener('click', switchDarkLightMode);
+
+function switchDarkLightMode(){
+console.log('OK');
+    const bodyElementStyle = getComputedStyle(document.body);
+
+    //Si le fond est dark
+    if(bodyElementStyle.backgroundColor == "rgb(40, 40, 40)"){
+        document.body.style.backgroundColor = "#f2eee9";
+        document.body.style.color = "black";
+
+        document.querySelector('.modalContent').style.color = "black";
+        document.querySelector('.modalContent').style.backgroundColor = "#f2eee9"
+
+        document.querySelector('.buttonDarkLightMode').children[0].src = "/public/build/images/button/lightButton.png";
+    }
+    else{
+        document.body.style.backgroundColor = "#282828";
+        document.body.style.color = "#ffffff";
+
+        document.querySelector('.modalContent').style.backgroundColor = "#282828";
+        document.querySelector('.modalContent').style.color = "#ffffff";
+
+        document.querySelector('.buttonDarkLightMode').children[0].src = "/public/build/images/button/darkButton.png";
+    }
 }
