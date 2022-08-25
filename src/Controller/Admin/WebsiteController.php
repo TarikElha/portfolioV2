@@ -92,4 +92,11 @@ class WebsiteController extends AbstractController
 
         return $this->redirectToRoute('website_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    public function headerLogo(WebsiteRepository $websiteRepository): Response
+    {
+        return $this->render('_headerLogo.html.twig', [
+            'website' => $websiteRepository->findAll(),
+        ]);
+    }
 }

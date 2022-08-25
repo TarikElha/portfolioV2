@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ProjectRepository;
+use App\Repository\WebsiteRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,8 +11,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomepageController extends AbstractController
 {
     #[Route('/', name: 'homepage')]
-    public function index(ProjectRepository $projectRepository): Response
+    public function index(ProjectRepository $projectRepository, WebsiteRepository $websiteRepository): Response
     {
-        return $this->render('homepage/index.html.twig', ['projects' => $projectRepository->findAll()]);
+        return $this->render('homepage/index.html.twig', [
+                                                        'projects' => $projectRepository->findAll(),
+                                                        'website' => $websiteRepository->findAll(),
+                                                        ]);
     }
 }
