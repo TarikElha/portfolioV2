@@ -1,0 +1,7 @@
+dashboard_admin:
+    projects: Mes projets
+    categories: Mes catégories
+    website: Mon site
+
+account_admin:
+    logout: Se déconnecter
