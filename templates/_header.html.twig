@@ -1,14 +1,25 @@
 <ul class="header">
-    <li><button class="buttonDarkLightMode"><img src="{{ asset('build/images/button/lightButton.png') }}" alt="ligthing mode button"></button></li>
+    <li><button class="buttonDarkLightMode"><img src="{{ asset('build/images/button/darkButton.png') }}" alt="ligthing mode button"></button></li>
     
     {{ render(controller('App\\Controller\\Admin\\WebsiteController::headerLogo')) }}
 
     {% if app.request.uri matches '{.*\/admin\/*}' %} 
-        <li class="title">
-            <div>{{ app.user.email }}</div>
-            <a href="{{ path('app_logout') }}"> Se déconnecter</a>
+        <li class="title" id="localeLogHeader">
+            <div class="localeHeader">
+                <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'fr'})) }}">
+                    FR
+                </a>
+                |
+                <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'en'})) }}">
+                    EN
+                </a>
+            </div>
+                {# <p>{{ app.user.email }}</p> #}
+            <div class="buttonsNav">
+                <a href="{{ path('app_logout') }}">{{ 'account_admin.logout'|trans }}</a>
+            </div>
         </li>
     {% else %}
-        <li class="contactHeader"><a href="#">CONTACT</a></li>
+        <li class="contactHeader buttonsNav"><a href="{{path('app_contact_new')}}">CONTACT</a></li>
     {% endif %}
 </ul>

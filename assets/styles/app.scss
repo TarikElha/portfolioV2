@@ -30,6 +30,7 @@ body{
 
 .title{
     font-family: 'Cormorant', sans-serif;
+    margin: 2rem;
 }
 
 ul{
@@ -45,10 +46,11 @@ a{
 .header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
 }
 
 .contactHeader{
-    align-self: center;
     margin-bottom: 3px;
 }
 
@@ -60,6 +62,25 @@ a{
 .logoHeader{
     width: 20vw;
     height: auto;
+}
+
+.buttonDarkLightMode{
+    background-color: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+#localeLogHeader{
+    margin: 2rem;
+    font-size: larger;
+}
+
+.localeHeader{
+    margin-bottom: 2rem;
+}
+
+.localeHeader:hover{
+    cursor: pointer;
 }
 
 //Projects on homepage
@@ -315,7 +336,7 @@ th, td{
 }
 
 .linkAdminToHomepage{
-    margin-top: 40vh;
+    margin-top: 20vh;
 }
 
 //Upload form style

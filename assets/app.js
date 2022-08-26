@@ -86,7 +86,9 @@ console.log('OK');
         document.querySelector('.modalContent').style.color = "black";
         document.querySelector('.modalContent').style.backgroundColor = "#f2eee9"
 
-        document.querySelector('.buttonDarkLightMode').children[0].src = "/public/build/images/button/lightButton.png";
+        document.querySelector('.buttonDarkLightMode').children[0].src = "/build/images/button/lightButton.png";
+        document.querySelector('.contactHeader').children[0].style.color = "black";
+        
     }
     else{
         document.body.style.backgroundColor = "#282828";
@@ -95,6 +97,7 @@ console.log('OK');
         document.querySelector('.modalContent').style.backgroundColor = "#282828";
         document.querySelector('.modalContent').style.color = "#ffffff";
 
-        document.querySelector('.buttonDarkLightMode').children[0].src = "/public/build/images/button/darkButton.png";
+        document.querySelector('.buttonDarkLightMode').children[0].src = "/build/images/button/darkButton.png";
+        document.querySelector('.contactHeader').children[0].style.color = "#ffffff";
     }
 }

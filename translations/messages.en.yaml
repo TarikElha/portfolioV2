@@ -1,0 +1,7 @@
+dashboard_admin:
+    projects: My projects
+    categories: My categories
+    website: My website
+
+account_admin:
+    logout: Logout

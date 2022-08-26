@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Laisser un message{% endblock %}
+
+{% block body %}
+    <h1 class="title">Laisser un message</h1>
+
+    {{ include('contact/_form.html.twig') }}
+
+    <div class="buttonsNav linkAdminToHomepage">
+        <a href="{{ path('homepage') }}">Portfolio</a>
+    </div>
+{% endblock %}
