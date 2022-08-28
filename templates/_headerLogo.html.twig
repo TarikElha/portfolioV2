@@ -1,5 +1,7 @@
-{% if website|first.biglogo %}
-    <li><img class="logoHeader" src="/uploads/portfolio/{{ website|first.biglogo }}" alt="Main logo"></li>
-{% else %}
-    <li class="titleHeader title"><h1>{{website|first.title}}</h1></li>
-{% endif %}
+<a href="{{path('homepage')}}">
+    {% if website|first.biglogo %}
+        <li><img class="logoHeader" src="/uploads/portfolio/{{ website|first.biglogo }}" alt="Main logo"></li>
+    {% else %}
+        <li class="titleHeader title"><h1>{{website|first.title}}</h1></li>
+    {% endif %}
+</a>

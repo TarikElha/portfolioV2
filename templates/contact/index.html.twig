@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact index{% endblock %}
+{% block title %}Messages{% endblock %}
 
 {% block body %}
-    <h1>Contact index</h1>
+    <h1 class="title">Messages</h1>
 
-    <table class="table">
+    {# <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Title</th>
                 <th>Message</th>
                 <th>Email</th>
-                <th>actions</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -22,10 +22,7 @@
                 <td>{{ contact.title }}</td>
                 <td>{{ contact.message }}</td>
                 <td>{{ contact.email }}</td>
-                <td>
-                    <a href="{{ path('app_contact_show', {'id': contact.id}) }}">show</a>
-                    <a href="{{ path('app_contact_edit', {'id': contact.id}) }}">edit</a>
-                </td>
+                <td>{{ include('contact/_delete_form.html.twig') }}</td>
             </tr>
         {% else %}
             <tr>
@@ -33,7 +30,34 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+    </table> #}
 
-    <a href="{{ path('app_contact_new') }}">Create new</a>
+    {% if contacts %}
+        <div class="sourceIndex">
+            <ul>
+                {% for contact in contacts %}
+                    <li class="sourceElementIndex">
+                        <div>
+                            <h2 class="title">Objet :</h2> <p>{{contact.title}}</p>
+                        </div>
+                        <div>
+                            <h2 class="title">Message :</h2> <p class="messageContact">{{contact.message}}</p>
+                        </div>
+                        <div>
+                            <h2 class="title">Contact :</h2> <p>{{contact.email}}</p>
+                        </div>
+                        <div class="editSourceButton">
+                            {{ include('contact/_delete_form.html.twig') }}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p>Aucun message</p>
+    {% endif %}
+
+    <div class="buttonsNav">
+        <a href="{{ path('admin') }}">Accueil d'administration</a>
+    </div>
 {% endblock %}

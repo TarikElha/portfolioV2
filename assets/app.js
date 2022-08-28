@@ -88,6 +88,7 @@ console.log('OK');
 
         document.querySelector('.buttonDarkLightMode').children[0].src = "/build/images/button/lightButton.png";
         document.querySelector('.contactHeader').children[0].style.color = "black";
+        document.querySelector('.titleHeader').style.color = "black";
         
     }
     else{
@@ -99,5 +100,18 @@ console.log('OK');
 
         document.querySelector('.buttonDarkLightMode').children[0].src = "/build/images/button/darkButton.png";
         document.querySelector('.contactHeader').children[0].style.color = "#ffffff";
+        document.querySelector('.titleHeader').style.color = "#ffffff";
     }
 }
+
+//Message flash duration
+const flashMessage = document.querySelector(".flash-success");
+flashMessage.style.opacity = "1";
+
+setInterval(function(){
+    if(flashMessage.style.opacity > 0)
+        flashMessage.style.opacity-=0.05;
+    else
+        flashMessage.style.display = "none";
+    },150);
+

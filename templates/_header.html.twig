@@ -20,6 +20,8 @@
             </div>
         </li>
     {% else %}
-        <li class="contactHeader buttonsNav"><a href="{{path('app_contact_new')}}">CONTACT</a></li>
+        <li class="contactHeader buttonsNav">
+            {{ render(controller('App\\Controller\\ContactController::contactHeader')) }}
+        </li>
     {% endif %}
 </ul>
