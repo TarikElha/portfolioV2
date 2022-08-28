@@ -72,7 +72,7 @@ class Contact
         return $this->website;
     }
 
-    public function setWebsite(?Website $website): self
+    public function setWebsite(Website $website): self
     {
         $this->website = $website;
 

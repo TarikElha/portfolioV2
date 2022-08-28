@@ -452,3 +452,21 @@ th, td{
 #search_project div .required{
     display: none;
 }
+
+//Messages flash
+.flash-success{
+    background-color: rgb(106, 218, 106);
+    color: black;
+    border-radius: 4px;
+    padding: 2rem;
+    text-align: center;
+    font-size: 2rem;
+}
+//contact index admin
+.messageContact{
+    width: 50vw;
+    word-wrap: break-word;
+}
+
+//media query telephone point de rupture 576px
+//Appliquer responsive sur page d'accueil + liste projets

@@ -3,17 +3,20 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Entity\Website;
 use App\Form\ContactType;
 use App\Repository\ContactRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\WebsiteRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/contact')]
 class ContactController extends AbstractController
 {
-    #[Route('/', name: 'app_contact_index', methods: ['GET'])]
+    #[Route('/admin', name: 'app_contact_index', methods: ['GET'])]
     public function index(ContactRepository $contactRepository): Response
     {
         return $this->render('contact/index.html.twig', [
@@ -21,17 +24,25 @@ class ContactController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_contact_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ContactRepository $contactRepository): Response
+    #[Route('/new/{website}', name: 'app_contact_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, ContactRepository $contactRepository, Website $website, ManagerRegistry $doctrine): Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $contact->setWebsite($website);
             $contactRepository->add($contact, true);
+            
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($contact);
+            
+            $entityManager->flush();
 
-            return $this->redirectToRoute('app_contact_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Votre message a bien été envoyé');
+
+            return $this->redirectToRoute('homepage', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('contact/new.html.twig', [
@@ -74,5 +85,12 @@ class ContactController extends AbstractController
         }
 
         return $this->redirectToRoute('app_contact_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    public function contactHeader(WebsiteRepository $websiteRepository): Response
+    {
+        return $this->render('contact/_contactHeader.html.twig', [
+            'website' => $websiteRepository->findAll(),
+        ]);
     }
 }

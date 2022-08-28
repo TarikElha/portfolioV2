@@ -2,6 +2,7 @@ dashboard_admin:
     projects: Mes projets
     categories: Mes catégories
     website: Mon site
+    message: Mes messages
 
 account_admin:
     logout: Se déconnecter
