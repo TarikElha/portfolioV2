@@ -14,7 +14,7 @@
             <ul>
                 {% for image in images %}
                     <p class="title numberImage">Image n°</p>
-                    <li><img class="showProjectImage" src="../../uploads/projects/{{ image.url }}" alt="Gallerie image projet"></li>
+                    <li><img class="showProjectImage" src="/uploads/projects/{{ image.url }}" alt="Gallerie image projet"></li>
 
                     <form method="post" action="{{ path('image_delete', {'id': image.id}) }}" onsubmit="return confirm('Supprimer cette image ?');">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ image.id) }}">

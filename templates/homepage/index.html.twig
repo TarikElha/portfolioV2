@@ -6,11 +6,16 @@
     <div class="projectPictures">
         {% for project in projects %}
             {% set imageUrl = project.images|first.url %}
+            {% set array = [] %}
+            {% for source in project.sources %}
+                {% set array = array|merge([[source.name, source.url ]]) %}
+            {% endfor %}
             <div class="projectPicture"><img class="imgProject"
                                             data-title="{{ project.title }}"
                                             data-description="{{ project.description }}"
                                             data-image-url="{{ imageUrl }}"
                                             data-date="{{ project.date|date('m/Y') }}"
+                                            data-sources="{{ array|json_encode|e('html_attr') }}"
                                             src="../uploads/projects/{{ imageUrl }}"
                                             alt="project picture">
             </div>
@@ -24,7 +29,7 @@
     <section class="aboutMe">
         <div class="about title">About</div>
         <div class="aboutMeDescription">
-            <p>{{website|first.aboutme}}</p>
+            <p>{{website|first.aboutme|raw}}</p>
             <div class="me title">me</div>
         </div>
     </section>

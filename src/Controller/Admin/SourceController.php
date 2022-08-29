@@ -40,6 +40,7 @@ class SourceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $source->setProject($project);
             $sourceRepository->add($source, true);
             $project->addSource($source);
 

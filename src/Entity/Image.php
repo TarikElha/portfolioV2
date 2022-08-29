@@ -35,9 +35,6 @@ class Image
     #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'images')]
     private $project;
 
-    #[ORM\Column(type: 'integer')]
-    private $position;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -91,18 +88,6 @@ class Image
     public function setUpdatedAt(?DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getPosition(): ?int
-    {
-        return $this->position;
-    }
-
-    public function setPosition(int $position): self
-    {
-        $this->position = $position;
 
         return $this;
     }

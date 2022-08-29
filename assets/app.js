@@ -22,10 +22,9 @@ function openModal(e){
         const imgProjectDescription = imgProjectElement.dataset.description;
         const imgProjectUrl = imgProjectElement.dataset.imageUrl;
         const imgProjectDate = imgProjectElement.dataset.date;
-
+        const imgProjectSouces = imgProjectElement.dataset.sources;
         
         modal.style.display = "block";
-        //modal.innerHTML = imgProjectTitle+" / "+imgProjectDescription+" / "+imgProjectUrl+" / "+imgProjectDate;
 
         const headerModalTitle = document.createElement("div");
         headerModalTitle.className = "headerModalTitle title";
@@ -42,6 +41,25 @@ function openModal(e){
         headerModalDate.textContent = imgProjectDate;
         mainModalImage.src = "../uploads/projects/" + imgProjectUrl;
         mainModalDescription.textContent = imgProjectDescription;
+
+        const arrayImgProjectSouces = JSON.parse(imgProjectSouces);
+        let sources = document.createElement("div");
+        const sourcesTitle = document.createElement("div");
+        sourcesTitle.className = "title";
+        sourcesTitle.innerHTML = "Sources :";
+
+        sources.appendChild(sourcesTitle);
+
+        let sourceContent = document.createElement("div");
+
+        for(let i = 0; i<arrayImgProjectSouces.length; i++){
+            sourceContent.innerHTML += arrayImgProjectSouces[i][0] + " : <br>" + arrayImgProjectSouces[i][1] + "<br><br>";
+        }
+
+        sources.appendChild(sourcesTitle);
+        sources.appendChild(sourceContent);
+
+        mainModalDescription.appendChild(sources);
 
         const modalContent = document.querySelector(".modalContent");
         const modalSubContent = document.createElement("div");
