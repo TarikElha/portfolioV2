@@ -31,7 +31,7 @@
                     {% set imageUrl = project.images|first %}
                     <td>
                         {% if imageUrl %}
-                            {% set imageUrlLink = '../../uploads/projects/' ~ imageUrl.url %}
+                            {% set imageUrlLink = '/uploads/projects/' ~ imageUrl.url %}
                         {% else %}
                             {% set imageUrlLink = "https://img.freepik.com/photos-gratuite/fond-bleu-degrade-luxe-abstrait-bleu-fonce-lisse-vignette-noire-studio-banner_1258-82761.jpg?w=1380&t=st=1661137964~exp=1661138564~hmac=d1b4c7ae8f9880b52c2d3f258cd451b371799fdaa956fd8bdc1226cff48cc254" %}
                         {% endif %}
