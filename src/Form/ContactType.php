@@ -19,7 +19,7 @@ class ContactType extends AbstractType
                 'label' => 'Message',
             ])
             ->add('email', null, [
-                'label' => 'Identité ou moyen de contact',
+                'label' => 'Identité et moyen de contact',
             ])
         ;
     }

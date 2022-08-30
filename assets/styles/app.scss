@@ -205,6 +205,7 @@ a{
 .adminIndex{
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
     margin-top: 15vh;
     font-size: 2rem;
 }
@@ -470,3 +471,44 @@ th, td{
 
 //media query telephone point de rupture 576px
 //Appliquer responsive sur page d'accueil + liste projets
+
+@media screen and (max-width: 767px) { 
+
+    .projectTab{
+        margin: 0;
+    }
+
+    .projectTabRow{
+        display: inline-block;
+        width: 100%;
+    }
+
+    .projectTabRow tr { 
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .projectTabRow tr td{
+        border: none;
+    }
+
+    .projectTabRow tr td img{
+        width: 40vw;
+        height: auto;
+    }
+
+    .projectTabRow tr{
+        border: 2px solid white;
+        margin: 2rem;
+    }
+
+    .projectTabHead{
+        display: none;
+    }
+
+    .adminIndex{
+        flex-direction: column;
+        text-align: center;
+    }
+}
