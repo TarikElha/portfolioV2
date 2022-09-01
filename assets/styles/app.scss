@@ -469,8 +469,8 @@ th, td{
     word-wrap: break-word;
 }
 
-//media query telephone point de rupture 576px
-//Appliquer responsive sur page d'accueil + liste projets
+//media query mobile point de rupture 767px
+//Appliquer responsive sur liste catégories (admin dashboard) + liste projets (admin dashboard)
 
 @media screen and (max-width: 767px) { 
 
