@@ -4,3 +4,8 @@ controllers:
     prefix: /{_locale}
     requirements:
         _locale: fr|en
+home:
+    path: /
+    controller: App\Controller\HomepageController::index
+    defaults:
+        _locale: fr|en
