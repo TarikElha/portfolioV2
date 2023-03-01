@@ -3,6 +3,7 @@
 {% block title %}{{website|first.title}}{% endblock %}
 
 {% block body %}
+<div class="container">
     <div class="projectPictures">
         {% for project in projects %}
             {% set imageUrl = project.images|first.url %}
@@ -21,6 +22,7 @@
             </div>
         {% endfor %}
     </div>
+</div>
     <aside class="modal">
         <div class="modalContent">
             <span class="closeModal">X</span>
