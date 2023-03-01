@@ -123,7 +123,7 @@ console.log('OK');
 }
 
 //Message flash duration
-const flashMessage = document.querySelector(".flash-success");
+/* const flashMessage = document.querySelector(".flash-success");
 flashMessage.style.opacity = "1";
 
 setInterval(function(){
@@ -131,5 +131,17 @@ setInterval(function(){
         flashMessage.style.opacity-=0.05;
     else
         flashMessage.style.display = "none";
-    },150);
+    },150); */
 
+
+// SCROLL horizontal des photos de projet. Réagit avec la "molette" de la souris, nous allons l'implémenter avec des boutons.
+let scrollAmount = 0;
+const imageContainer = document.querySelector('.projectPictures');
+
+imageContainer.addEventListener('wheel', (event) => {
+    console.log("YATTAAA");
+    event.preventDefault();
+    const scrollDelta = event.deltaY * 0.2;
+    scrollAmount += scrollDelta;
+    imageContainer.scrollLeft = scrollAmount;
+});
