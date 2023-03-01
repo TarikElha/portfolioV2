@@ -1,5 +1,7 @@
-//Environment style
+//Bootstrap integration.
+@import "~bootstrap/scss/bootstrap";
 
+//Environment style.
 @font-face {
 	font-family: 'Cormorant';
 	src: url('./fonts/Cormorant_Infant_SemiBold_600.ttf') format('truetype');
