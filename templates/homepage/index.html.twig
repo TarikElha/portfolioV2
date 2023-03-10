@@ -4,7 +4,7 @@
 
 {% block body %}
 
-
+<div class="container">
 <div id="demo" class="carousel slide carousel-fade" data-ride="carousel">
         <!-- Indicateurs -->
         <ul class="carousel-indicators">
@@ -25,6 +25,75 @@
             <img src="https://www.pierre-giraud.com/bootstrap-carrousel-slide-3.jpg" alt="Carrousel slide 3" class="d-block w-100">
           </div>
         </div>
+
+ {#         <div class="carousel-inner">
+             {% for project in projects %}
+{% set compteur = 0 %}
+{% if compteur is same as (0) %}        
+
+    <div class="carousel-item active" data-interval="4000">
+  
+               
+                        {% set imageUrl = project.images|first.url %}
+                        {% set array = [] %}
+                        {% for source in project.sources %}
+                            {% set array = array|merge([[source.name, source.url ]]) %}
+                        {% endfor %}
+                        <img class="d-block w-100"
+                                                data-title="{{ project.title }}"
+                                                data-description="{{ project.description }}"
+                                                data-image-url="{{ imageUrl }}"
+                                                data-date="{{ project.date|date('m/Y') }}"
+                                                data-sources="{{ array|json_encode|e('html_attr') }}"
+                                                src="../uploads/projects/{{ imageUrl }}"
+                                                alt="project picture">
+            </div>
+
+{% else %}
+                   <div class="carousel-item" data-interval="4000">
+                        {% set imageUrl = project.images|first.url %}
+                        {% set array = [] %}
+                        {% for source in project.sources %}
+                            {% set array = array|merge([[source.name, source.url ]]) %}
+                        {% endfor %}
+                        <img class="d-block w-100"
+                                                data-title="{{ project.title }}"
+                                                data-description="{{ project.description }}"
+                                                data-image-url="{{ imageUrl }}"
+                                                data-date="{{ project.date|date('m/Y') }}"
+                                                data-sources="{{ array|json_encode|e('html_attr') }}"
+                                                src="../uploads/projects/{{ imageUrl }}"
+                                                alt="project picture">
+                
+            </div>
+{% endif %}
+
+{% endfor %}
+
+
+
+
+
+            <div class="carousel-item active" data-interval="4000">
+                {% set compteur = 0 %}
+                {% for project in projects %}
+                    {% if compteur = 0 %}
+                        {% set imageUrl = project.images|first.url %}
+                        {% set array = [] %}
+                        {% for source in project.sources %}
+                            {% set array = array|merge([[source.name, source.url ]]) %}
+                        {% endfor %}
+                        <img class="d-block w-100"
+                                                data-title="{{ project.title }}"
+                                                data-description="{{ project.description }}"
+                                                data-image-url="{{ imageUrl }}"
+                                                data-date="{{ project.date|date('m/Y') }}"
+                                                data-sources="{{ array|json_encode|e('html_attr') }}"
+                                                src="../uploads/projects/{{ imageUrl }}"
+                                                alt="project picture">
+                {% endfor %}
+            </div>
+        </div>
         
         <!-- Contrôles -->
         <a class="carousel-control-prev" href="#demo" role="button" data-slide="prev">
@@ -36,9 +105,9 @@
           <span class="sr-only">Suivant</span>
         </a>
       </div>
+</div>
 
-
-
+ #}
 
 
 <div class="container">
