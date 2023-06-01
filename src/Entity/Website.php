@@ -45,9 +45,6 @@ class Website
     )]
     private File $littlelogoFile;
 
-    #[ORM\Column(type: 'integer')]
-    private $typeportfolio;
-
     #[ORM\Column(type: 'text', nullable: true)]
     private $aboutme;
 
@@ -103,17 +100,6 @@ class Website
         return $this;
     }
 
-    public function getTypeportfolio(): ?int
-    {
-        return $this->typeportfolio;
-    }
-
-    public function setTypeportfolio(int $typeportfolio): self
-    {
-        $this->typeportfolio = $typeportfolio;
-
-        return $this;
-    }
 
     public function getAboutme(): ?string
     {

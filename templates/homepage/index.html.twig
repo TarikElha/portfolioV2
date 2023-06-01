@@ -3,6 +3,29 @@
 {% block title %}{{website|first.title}}{% endblock %}
 
 {% block body %}
+
+{# <div id="demo" class="carousel slide carousel-fade" data-ride="carousel">
+        <!-- Indicateurs -->
+        <ul class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+          <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- Carrousel -->
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-interval="4000">
+            <img src="https://www.pierre-giraud.com/bootstrap-carrousel-slide-1.jpg" alt="Carrousel slide 1" class="d-block w-100">
+          </div>
+          <div class="carousel-item" data-interval="2000">
+            <img src="https://www.pierre-giraud.com/bootstrap-carrousel-slide-2.jpg" alt="Carrousel slide 2" class="d-block w-100">
+          </div>
+          <div class="carousel-item" data-interval="1000">
+            <img src="https://www.pierre-giraud.com/bootstrap-carrousel-slide-3.jpg" alt="Carrousel slide 3" class="d-block w-100">
+          </div>
+        </div>
+</div> #}
+{# 
 <div class="container">
     <div class="projectPictures">
         {% for project in projects %}
@@ -23,6 +46,68 @@
         {% endfor %}
     </div>
 </div>
+#}
+
+{#                 <div class="carousel">
+                    <div class="wrap">
+                        <ul>
+                            <li>
+                                <img src='https://cdn.pixabay.com/photo/2016/10/13/00/03/girl-1736419__340.jpg' alt='photoCaroussel'/>
+                            </li>
+                            <li>
+                                <img src='http://ppcdn.500px.org/72233281/5e145f8f95427805045dbaf1ec2cf17bcb4b25b3/3.jpg' alt='photoCaroussel'/>
+                            </li>
+                            <li>
+                                <img src='http://ppcdn.500px.org/72190239/1ac03d25646f92afd4d80ed8e6f2c1cfc78635b5/4.jpg' alt='photoCaroussel'/>
+                            </li>
+                            <li>
+                                <img src='http://ppcdn.500px.org/72190239/1ac03d25646f92afd4d80ed8e6f2c1cfc78635b5/4.jpg' alt='photoCaroussel'/>
+                            </li>
+                            <li>
+                                <img src='http://ppcdn.500px.org/58739696/b0c33312552e8581ef457720bb924f16421dcec8/3.jpg' alt='photoCaroussel'/>
+                            </li>
+                            <li>
+                                <img src='http://ppcdn.500px.org/43028892/84b059f25810f07962ae46e63c44c625b2f9b9e6/2048.jpg' alt='photoCaroussel'/>
+                            </li>
+                            <li>
+                                <img src='https://cdn.pixabay.com/photo/2017/09/21/07/47/girl-2771001__340.jpg' alt='photoCaroussel'/>
+                            </li>
+                            <li>
+                                <img src='https://cdn.pixabay.com/photo/2018/03/12/12/32/woman-3219507__340.jpg' alt='photoCaroussel'/>
+                            </li>
+                        </ul>
+                    </div>
+                </div> #}
+
+  <div class="carousel">
+      <div class="wrap">
+      <ul>
+    {% for project in projects %}
+            {% set imageUrl = [] %}
+            {% for image in project.images %}
+                {% set imageUrl = imageUrl|merge([image.url ]) %}
+            {% endfor %}
+            {% set array = [] %}
+            {% for source in project.sources %}
+                {% set array = array|merge([[source.name, source.url ]]) %}
+            {% endfor %}
+            <li class="projectPicture"><img class="imgProject"
+                                            data-title="{{ project.title }}"
+                                            data-description="{{ project.description }}"
+                                            data-image-url={{ imageUrl|json_encode|e('html_attr') }}
+                                            data-date="{{ project.date|date('m/Y') }}"
+                                            data-sources="{{ array|json_encode|e('html_attr') }}"
+                                            src="../uploads/projects/{{ imageUrl|first }}"
+                                            alt="project picture">
+            </li>
+        {% endfor %}
+        </ul>
+        </div>
+        </div>
+
+
+    <div id="homePortfolio"></div>
+
     <aside class="modal">
         <div class="modalContent">
             <span class="closeModal">X</span>

@@ -25,14 +25,6 @@ class WebsiteType extends AbstractType
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
             ])
-            ->add('typeportfolio', ChoiceType::class, 
-                [
-                    'choices' => [
-                        'Technique' => '1',
-                        'Graphique' => '2',
-                ],
-            'expanded' => true
-            ])
             ->add('aboutme')
         ;
     }
