@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomepageController extends AbstractController
 {
-    #[Route('/', name: 'homepage')]
+    #[Route('/{reactRouting}', name: 'homepage', defaults:['reactRouting'=> null])]
     public function index(ProjectRepository $projectRepository, WebsiteRepository $websiteRepository): Response
     {
         return $this->render('homepage/index.html.twig', [
