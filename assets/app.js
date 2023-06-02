@@ -56,7 +56,7 @@ function checkImage(e){
 
         ReactDOM.render(<Main title={imgProjectTitle} 
                             description={imgProjectDescription}
-                            url={imgProjectUrl}
+                            urls={imgProjectUrl}
                             dateData={imgProjectDate}
                             sources={arrayImgProjectSources}
                             />, document.getElementById('homePortfolio'));

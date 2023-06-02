@@ -93,7 +93,7 @@ export default class Main extends React.Component{
         return (
             <>
                 <div id="firstImageHome">
-                    <img src={"../uploads/projects/"+this.props.url[0]} alt="Image projet"/>
+                    <img src={"../uploads/projects/"+this.props.urls[0]} alt="Image projet"/>
                     <div id="masque"></div>
                 </div>
 
@@ -104,27 +104,30 @@ export default class Main extends React.Component{
                 <h1 className="title">{this.props.title + " ( "+ this.props.dateData + " )"}</h1>
                 <section className="descriptionHomepage">
                     <p>{this.props.description}</p>
-
                     <p>
                         <b>Sources :</b> <ul>
-
-{/*                         On va convertir l'objet en tableau.
-
-                        var monObjet = {"8":10,"6":4,"12":5}
-                        var monTableau = Object.keys(monObjet).map(function(cle) {
-                            return [Number(cle), monObjet[cle]];
-                        }); */}
-                        
-                                            {this.props.sources.map((source) =>
+                                            {this.props.sources.map((source, index) =>
                                                 <li key={index} id={index}>
-                                                    {source}
+                                                    <i>{this.props.sources[index][0]}</i> : {this.props.sources[index][1]}
                                                 </li>
                                             )}
                                         </ul>
                     </p>
                 </section>
 
-                <div>url : {this.props.url}</div>
+                <section className="galleryDetailHomepage">
+                    <ul>
+                        {this.props.urls.map((url, index) =>
+                            <li key={index} id={index}>
+                                {index===0 ? "" : (index%2 === 0 ? <img className="imageDetailHomepageRight" src={"../uploads/projects/"+this.props.urls[index]} alt="Image projet"/> : <img className="imageDetailHomepageLeft" src={"../uploads/projects/"+this.props.urls[index]} alt="Image projet"/>)}
+                            </li>
+                        )}
+                    </ul>
+                    <div id="lastImageHome">
+                        <img src={"../uploads/projects/"+this.props.urls[0]} alt="Image projet"/>
+                    </div>
+                </section>
+                
             </>
         );
     }
