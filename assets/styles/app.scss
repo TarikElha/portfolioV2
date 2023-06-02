@@ -756,12 +756,35 @@ th, td{
     z-index: 2;
 
     width:100vw;
+
+    // En supprimant les deux lignes ci-dessous ou en les réajustant, on peut créer un effet déstructuré fort intéressant.
     object-fit: none;
     height: 60vh;
-    //opacity: 0.05;
 }
 
 // Contenu d'un projet sur la homepage.
 .descriptionHomepage{
     text-align: justify;
+}
+
+// Gallery détail homepage.
+
+.galleryDetailHomepage{
+}
+
+.imageDetailHomepageLeft{
+    width:50vw;
+    margin: 2rem;
+    float: left;
+}
+
+.imageDetailHomepageRight{
+    width:50vw;
+    margin:2rem;
+    float: right;
+}
+
+#lastImageHome{
+    margin: auto;
+    width:75vw;
 }
