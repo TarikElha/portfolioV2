@@ -6,8 +6,13 @@ use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+//Ici on importe le package Vich, que l’on utilisera sous l’alias “Vich”
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
+#[Vich\Uploadable]
 class Project
 {
     #[ORM\Id]
@@ -32,6 +37,16 @@ class Project
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Source::class, orphanRemoval: true)]
     private $sources;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $miniatureUrl = null;
+
+    #[Vich\UploadableField(mapping: 'project_file', fileNameProperty: 'miniatureUrl')]
+    #[Assert\File(
+        maxSize: '3M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/svg'],
+    )]
+    private File $urlFile;
 
     public function __construct()
     {
@@ -163,5 +178,33 @@ class Project
         }
 
         return $this;
+    }
+
+    public function getMiniatureUrl(): ?string
+    {
+        return $this->miniatureUrl;
+    }
+
+    public function setMiniatureUrl(?string $miniatureUrl): self
+    {
+        $this->miniatureUrl = $miniatureUrl;
+
+        return $this;
+    }
+
+    public function setUrlFile(File $image = null): Image
+    {
+        $this->urlFile = $image;
+
+        if ($image){
+            $this->updatedAt = new DateTime('now');
+        }
+
+        return $this;
+    }
+
+    public function getUrlFile(): ?File
+    {
+        return $this->urlFile;
     }
 }

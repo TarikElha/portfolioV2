@@ -1,7 +1,14 @@
 <a href="{{path('homepage')}}">
-    {% if website|first.biglogo %}
-        <li><img class="logoHeader" src="/uploads/portfolio/{{ website|first.biglogo }}" alt="Main logo"></li>
+
+    {% if website %}
+        {% if website|first.biglogo %}
+            <li><img class="logoHeader" src="/uploads/portfolio/{{ website|first.biglogo }}" alt="Main logo"></li>
+        {% elseif website|first.title %}
+            <li class="titleHeader title"><h1>{{website|first.title}}</h1></li>
+        {% else %}
+            <li class="titleHeader title"><h1>Ici placez le logo ou le titre du portfolio par défaut.</h1></li>
+        {% endif %}
     {% else %}
-        <li class="titleHeader title"><h1>{{website|first.title}}</h1></li>
+        <li class="titleHeader title"><h1>Ici placez le logo ou le titre du portfolio par défaut.</h1></li>
     {% endif %}
 </a>
