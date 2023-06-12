@@ -25,10 +25,16 @@ import ReactDOM from 'react-dom';
 
 
 document.addEventListener("click", checkImage);
+let currentReactInstance = null;
 const modal = document.querySelector(".modal");
 
 function checkImage(e){
+    if(e.target.className === "logoHeader" || e.target.className === "titleHeader")
+      ReactDOM.unmountComponentAtNode(document.getElementById('homePortfolio'));
     if(e.target.className === "imgProject"){
+
+        ReactDOM.unmountComponentAtNode(document.getElementById('homePortfolio'));
+
         const imgProjectElement = e.target;
         const imgProjectTitle = imgProjectElement.dataset.title;
         const imgProjectDescription = imgProjectElement.dataset.description;
@@ -54,7 +60,7 @@ function checkImage(e){
         const imgProjectSources = imgProjectElement.dataset.sources;
         const arrayImgProjectSources = JSON.parse(imgProjectSources);
 
-        ReactDOM.render(<Main title={imgProjectTitle} 
+        ReactDOM.render(<Main title={imgProjectTitle}
                             description={imgProjectDescription}
                             urls={imgProjectUrl}
                             dateData={imgProjectDate}
@@ -206,7 +212,10 @@ imageContainer.addEventListener('wheel', (event) => {
 }); */
 
 
-// Caroussel   
+// Caroussel
+
+
+
 
 function HoverCarousel( elm, settings ){
     this.DOM = {
@@ -321,4 +330,22 @@ function HoverCarousel( elm, settings ){
              
   var carouselElm = document.querySelector('.carousel')
   console.log(carouselElm)
-  new HoverCarousel(carouselElm)         
+  new HoverCarousel(carouselElm)
+
+  // Assurez-vous que le script est chargé sur toutes les pages
+document.addEventListener("DOMContentLoaded", function() {
+  // Initialisez le carrousel sur la page d'accueil
+  if (window.location.pathname === '/') {
+    var carouselElm = document.querySelector('.carousel');
+    new HoverCarousel(carouselElm);
+  }
+});
+
+// Écoutez l'événement de transition de page de Swup
+document.addEventListener('swup:contentReplaced', function() {
+  // Réinitialisez le carrousel sur la nouvelle page
+  var carouselElm = document.querySelector('.carousel');
+  if (carouselElm) {
+    new HoverCarousel(carouselElm);
+  }
+});

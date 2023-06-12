@@ -1,1 +1,5 @@
-<a href="{{path('app_contact_new', {'website': website|first.id})}}">CONTACT</a>
+{% if website %}
+    <a href="{{path('app_contact_new', {'website': website|first.id})}}">CONTACT</a>
+{% else %}
+    <a href="#">CONTACT</a>
+{% endif %}

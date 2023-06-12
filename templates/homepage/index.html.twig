@@ -1,6 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{website|first.title}}{% endblock %}
+{% block title %}
+    {% if website %}
+        {% if website|first.title %}
+            {{website|first.title}}
+        {% else %}
+            Ici placez le logo ou le titre du portfolio.
+        {% endif %}
+    {% else %}
+        Ici placez le logo ou le titre du portfolio.
+    {% endif %}
+{% endblock %}
 
 {% block body %}
 
@@ -116,7 +126,11 @@
     <section class="aboutMe">
         <div class="about title">About</div>
         <div class="aboutMeDescription">
+        {% if website %}
             <p>{{website|first.aboutme|raw}}</p>
+        {% else %}
+            <p>Veuillez indiquer dans cette section une présentation de vous.</p>
+        {% endif %}
             <div class="me title">me</div>
         </div>
     </section>
