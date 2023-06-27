@@ -16,3 +16,4 @@ vich_uploader:
             # Chemin vers le dossier de stockage
             upload_destination: '%upload_directory_projects%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            

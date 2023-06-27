@@ -1,11 +1,12 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
-    prefix: /{_locale}
-    requirements:
-        _locale: fr|en
 home:
     path: /
     controller: App\Controller\HomepageController::index
-    defaults:
-        _locale: fr|en
+project_image:
+    path: /admin/project/image
+    controller: App\Controller\Admin\ProjectController::getImage
+    methods: [POST]
+    options:
+        expose: true

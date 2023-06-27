@@ -1,4 +1,12 @@
-{{ form_start(form) }}
+{# {{ form_start(form) }}
     {{ form_widget(form) }}
+
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}
+ #}
+
+{{ form_start(form, {'attr': {'id': 'project_form'}}) }}
+    {{ form_widget(form) }}
+    <img width="400" src="" alt="" id="imageProject">
     <button class="btn">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

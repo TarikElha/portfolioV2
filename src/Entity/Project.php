@@ -12,7 +12,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
-#[Vich\Uploadable]
 class Project
 {
     #[ORM\Id]
@@ -38,21 +37,35 @@ class Project
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Source::class, orphanRemoval: true)]
     private $sources;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $miniatureUrl = null;
+    /**
+     * @ORM\Column(type="string", length=255)
+    */
+    private $imageProject;
 
-    #[Vich\UploadableField(mapping: 'project_file', fileNameProperty: 'miniatureUrl')]
-    #[Assert\File(
-        maxSize: '3M',
-        mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/svg'],
-    )]
-    private File $urlFile;
+    #[ORM\Column(length: 255)]
+    private ?string $imageProjectName = null;
+    
 
     public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->sources = new ArrayCollection();
+    }
+
+
+    //Cropper
+
+    public function getImageProject(): ?string
+    {
+        return $this->imageProject;
+    }
+
+    public function setImageProject(string $imageProject): self
+    {
+        $this->imageProject = $imageProject;
+
+        return $this;
     }
 
     public function getId(): ?int
@@ -180,31 +193,15 @@ class Project
         return $this;
     }
 
-    public function getMiniatureUrl(): ?string
+    public function getImageProjectName(): ?string
     {
-        return $this->miniatureUrl;
+        return $this->imageProjectName;
     }
 
-    public function setMiniatureUrl(?string $miniatureUrl): self
+    public function setImageProjectName(string $imageProjectName): self
     {
-        $this->miniatureUrl = $miniatureUrl;
+        $this->imageProjectName = $imageProjectName;
 
         return $this;
-    }
-
-    public function setUrlFile(File $image = null): Image
-    {
-        $this->urlFile = $image;
-
-        if ($image){
-            $this->updatedAt = new DateTime('now');
-        }
-
-        return $this;
-    }
-
-    public function getUrlFile(): ?File
-    {
-        return $this->urlFile;
     }
 }

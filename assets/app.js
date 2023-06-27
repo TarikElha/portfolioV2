@@ -23,6 +23,12 @@ import Main from './Main';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Cropper from 'cropperjs';
+import axios from 'axios';
+import Routing from '../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.js'
+import Routes from './routes.json'
+
+Routing.setRoutingData(Routes)
 
 document.addEventListener("click", checkImage);
 let currentReactInstance = null;
@@ -327,10 +333,100 @@ function HoverCarousel( elm, settings ){
       )
     }
   }
-             
-  var carouselElm = document.querySelector('.carousel')
-  console.log(carouselElm)
+
+
+
+
+
+
+// Cropper////////////////////////////////////////////////////////////////
+console.log("CROPPER");
+
+
+let cropper;
+var preview = document.getElementById('imageProject')
+var file_input = document.getElementById('project_imageProject')
+window.previewFile  = function ()
+{
+    let file = file_input.files[0]
+    let reader = new FileReader()
+
+    reader.addEventListener('load', function (event)
+    {
+        preview.src = reader.result
+    }, false)
+
+    if (file)
+    {
+        reader.readAsDataURL(file)
+    }
+}
+
+preview.addEventListener('load', function (event)
+{
+    cropper = new Cropper(preview, {
+        aspectRatio: 1/1
+    })
+})
+
+
+
+
+let form = document.getElementById('project_form')
+form.addEventListener('submit', function (event)
+{
+    event.preventDefault()
+    cropper.getCroppedCanvas({
+        maxHeight: 1000,
+        maxWidth: 1000
+    }).toBlob(function (blob)
+    {
+        ajaxWithAxios(blob)
+    })
+})
+
+function ajaxWithAxios(blob)
+{
+    let url = "http://localhost:8000"+Routing.generate('project_image')
+    //let url = "http://localhost:8000/admin/project/image"
+    console.log(url)
+    let data = new FormData(form)
+    console.log(data)
+    data.append('file', blob)
+    console.log(data)
+    axios({
+        method: 'post',
+        url: url,
+        data: data,
+        headers: {'X-Requested-With': 'XMLHttpRequest',
+        }
+    })
+    .then((response) => {
+        console.log(response)
+    })
+    .catch((error) => {
+        console.error(error)
+    })
+}
+
+/////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+var carouselElm = document.querySelector('.carousel')
+//console.log(carouselElm)
+
+if (carouselElm){
   new HoverCarousel(carouselElm)
+}
 
   // Assurez-vous que le script est chargé sur toutes les pages
 document.addEventListener("DOMContentLoaded", function() {
@@ -340,6 +436,7 @@ document.addEventListener("DOMContentLoaded", function() {
     new HoverCarousel(carouselElm);
   }
 });
+
 
 // Écoutez l'événement de transition de page de Swup
 document.addEventListener('swup:contentReplaced', function() {
