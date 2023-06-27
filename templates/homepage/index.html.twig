@@ -107,7 +107,8 @@
                                             data-image-url={{ imageUrl|json_encode|e('html_attr') }}
                                             data-date="{{ project.date|date('m/Y') }}"
                                             data-sources="{{ array|json_encode|e('html_attr') }}"
-                                            src="../uploads/projects/{{ imageUrl|first }}"
+                                            {# src="../uploads/projects/{{ imageUrl|first }}" #}
+                                            src="../uploads/projects/{{ project.imageProjectName }}"
                                             alt="project picture">
             </li>
         {% endfor %}

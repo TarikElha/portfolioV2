@@ -8,6 +8,8 @@ use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProjectType extends AbstractType
 {
@@ -20,11 +22,11 @@ class ProjectType extends AbstractType
             ->add('description', null, [
                 'label' => 'Déscription',
             ])
-            ->add('urlFile', VichFileType::class, [
-                'label' => 'Sélectionner une image',
-                'required'      => true,
-                'allow_delete'  => true, // not mandatory, default is true
-                'download_uri' => true, // not mandatory, default is true
+            ->add('imageProject', FileType::class, [
+                'label' => 'Image du projet',
+                'attr' => [
+                    'onchange'    => 'previewFile()',
+                ]
             ])
             ->add('date', DateType::class, [
                 'label' => 'Date du projet',

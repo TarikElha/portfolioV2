@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+#[Route('/login')]
 class LoginController extends AbstractController
 {
     #[Route('/login', name: 'app_login')]

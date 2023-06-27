@@ -3,6 +3,7 @@
         "@hotwired/stimulus": "^3.0.0",
         "@popperjs/core": "^2.11.6",
         "@symfony/stimulus-bridge": "^3.2.0",
+        "@symfony/ux-cropperjs": "file:vendor/symfony/ux-cropperjs/assets",
         "@symfony/webpack-encore": "^3.0.0",
         "bootstrap": "^5.2.3",
         "core-js": "^3.23.0",
@@ -23,6 +24,7 @@
     },
     "dependencies": {
         "@babel/preset-react": "^7.0.0",
+        "axios": "^1.4.0",
         "cropperjs": "^1.5.13",
         "gsap": "^3.12.1",
         "prop-types": "^15.8.1",
