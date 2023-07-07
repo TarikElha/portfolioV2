@@ -69,8 +69,8 @@ class ProjectController extends AbstractController
     {
         
         if ($request->isXmlHttpRequest())
-        {
-            $project = new Project();
+        { 
+             $project = new Project();
             $form = $this->createForm(ProjectType::class, $project);
             $form->handleRequest($request);
             // the file
@@ -87,9 +87,13 @@ class ProjectController extends AbstractController
             $em->flush();
 
             return $this->redirectToRoute('project_index');
-        }
-        return new JsonResponse("This is not an ajax request");
+ 
 
+ 
+         }
+         return new JsonResponse("yoloooooooooooooooooooooooooooooooooo");
+        //return new JsonResponse($request);
+ 
     }
 
     private function generateUniqueName()

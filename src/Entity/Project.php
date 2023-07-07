@@ -8,6 +8,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 //Ici on importe le package Vich, que l’on utilisera sous l’alias “Vich”
 use Symfony\Component\HttpFoundation\File\File;
+
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -38,12 +41,12 @@ class Project
     private $sources;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var UploadedFile|null
     */
     private $imageProject;
 
-    #[ORM\Column(length: 255)]
-    private ?string $imageProjectName = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageProjectName;
     
 
     public function __construct()
@@ -56,16 +59,14 @@ class Project
 
     //Cropper
 
-    public function getImageProject(): ?string
+    public function getImageProject(): ?UploadedFile
     {
         return $this->imageProject;
     }
 
-    public function setImageProject(string $imageProject): self
+    public function setImageProject(?UploadedFile $imageProject): void
     {
         $this->imageProject = $imageProject;
-
-        return $this;
     }
 
     public function getId(): ?int

@@ -343,71 +343,101 @@ function HoverCarousel( elm, settings ){
 console.log("CROPPER");
 
 
-let cropper;
-var preview = document.getElementById('imageProject')
-var file_input = document.getElementById('project_imageProject')
-window.previewFile  = function ()
-{
-    let file = file_input.files[0]
-    let reader = new FileReader()
 
-    reader.addEventListener('load', function (event)
-    {
-        preview.src = reader.result
-    }, false)
 
-    if (file)
-    {
+const init = () => {
+
+  let cropper;
+  var preview = document.getElementById('imageProject')
+  var file_input = document.getElementById('project_imageProject')
+
+  window.previewFile  = function ()
+  {
+/*       if(document.getElementsByClassName("cropper-container")[0])
+        document.getElementsByClassName("cropper-container")[0].remove();
+      console.log("Erase !"); */
+
+      let file = file_input.files[0]
+      let reader = new FileReader()
+
+      reader.addEventListener('load', function (event)
+      {
+          preview.src = reader.result
+
+      }, false)
+
+      if (file)
+      {
         reader.readAsDataURL(file)
-    }
-}
+      }
+  }
 
-preview.addEventListener('load', function (event)
-{
-    cropper = new Cropper(preview, {
-        aspectRatio: 1/1
-    })
-})
-
-
-
-
-let form = document.getElementById('project_form')
-form.addEventListener('submit', function (event)
-{
-    event.preventDefault()
-    cropper.getCroppedCanvas({
-        maxHeight: 1000,
-        maxWidth: 1000
-    }).toBlob(function (blob)
+  if(preview){
+    preview.addEventListener('load', function (event)
     {
-        ajaxWithAxios(blob)
-    })
-})
 
-function ajaxWithAxios(blob)
-{
-    let url = "http://localhost:8000"+Routing.generate('project_image')
-    //let url = "http://localhost:8000/admin/project/image"
-    console.log(url)
-    let data = new FormData(form)
-    console.log(data)
-    data.append('file', blob)
-    console.log(data)
-    axios({
-        method: 'post',
-        url: url,
-        data: data,
-        headers: {'X-Requested-With': 'XMLHttpRequest',
-        }
+      if (cropper) {
+        cropper.destroy();
+      }
+
+        cropper = new Cropper(preview, {
+            aspectRatio: 1/1
+        })
     })
-    .then((response) => {
-        console.log(response)
+  }
+
+  let form = document.getElementById('project_form')
+  if(form){
+    form.addEventListener('submit', function (event)
+    {console.log("send");
+        event.preventDefault()
+        cropper.getCroppedCanvas({
+            maxHeight: 1000,
+            maxWidth: 1000
+        }).toBlob(function (blob)
+        {
+            ajaxWithAxios(blob)
+        })
     })
-    .catch((error) => {
-        console.error(error)
-    })
+  }
+  
+  function ajaxWithAxios(blob)
+  {
+      //let url = "http://localhost:8000"+Routing.generate('project_image')
+      let url = "http://localhost:8000/admin/project/image"
+      console.log(url)
+      let data = new FormData(form)
+      console.log(data)
+      data.append('file', blob)
+      console.log(data)
+      axios({
+          method: 'post',
+          url: url,
+          data: data,
+          headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          "Access-Control-Allow-Origin" : "*",
+          },
+      })
+      .then((response) => {
+          console.log(response)
+      })
+      .catch((error) => {
+          console.error(error)
+      })
+  }
+
+
+
 }
+
+// Eviter le blocage du onChange par swup.
+swup.on('contentReplaced', init);
+document.addEventListener('DOMContentLoaded', function() {
+  init();
+});
+
+
 
 /////////////////////////////////////////////////////////////////////
 
