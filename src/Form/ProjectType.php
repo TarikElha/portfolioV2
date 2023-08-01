@@ -26,7 +26,8 @@ class ProjectType extends AbstractType
                 'label' => 'Image du projet',
                 'attr' => [
                     'onchange'    => 'previewFile()',
-                ]
+                ],
+                'required' => false,
             ])
             ->add('date', DateType::class, [
                 'label' => 'Date du projet',

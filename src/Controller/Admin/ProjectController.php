@@ -69,7 +69,7 @@ class ProjectController extends AbstractController
     {
         
         if ($request->isXmlHttpRequest())
-        {
+        { 
             $project = new Project();
             $form = $this->createForm(ProjectType::class, $project);
             $form->handleRequest($request);
@@ -86,11 +86,66 @@ class ProjectController extends AbstractController
             $em->persist($project);
             $em->flush();
 
-            return $this->redirectToRoute('project_index');
-        }
-        return new JsonResponse("This is not an ajax request");
+            $response = new JsonResponse(['redirect_url' => $this->generateUrl('project_index')]);
+            return $response;
+ 
 
+ 
+         }
+         return new JsonResponse("yoloooooooooooooooooooooooooooooooooo");
+        //return new JsonResponse($request);
+ 
     }
+
+
+
+
+
+   /**
+     * @Route("/{id}/image", name="project_imageEdit", methods={"POST"}, options={"expose"=true})
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getImageEdit(Request $request, EntityManagerInterface $em, Project $project)
+    {
+        
+        if ($request->isXmlHttpRequest())
+        {
+            $form = $this->createForm(ProjectType::class, $project);
+            $form->handleRequest($request);
+            // the file
+            $file = $_FILES['file'];
+            $file = new UploadedFile($file['tmp_name'], $file['name'], $file['type']);
+            $filename = $this->generateUniqueName() . '.' . $file->guessExtension();
+            $file->move(
+                $this->getTargetDir(),
+                $filename
+            );
+            $project->setImageProjectName($filename);
+            //$em = $this->getDoctrine()->getManager();
+            $em->persist($project);
+            $em->flush();
+
+            $response = new JsonResponse(['redirect_url' => $this->generateUrl('project_index')]);
+            return $response;
+ 
+
+ 
+         }
+         return new JsonResponse("yoloooooooooooooooooooooooooooooooooo");
+        //return new JsonResponse($request);
+ 
+    }
+
+
+
+
+
+
+
+
+
+
 
     private function generateUniqueName()
     {
