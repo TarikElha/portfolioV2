@@ -403,8 +403,15 @@ const init = () => {
   
   function ajaxWithAxios(blob)
   {
+
+    const isProject = form.dataset.projectId;
       //let url = "http://localhost:8000"+Routing.generate('project_image')
       let url = "http://localhost:8000/admin/project/image"
+
+      if (isProject)
+        url = "http://localhost:8000/admin/project/" + isProject + "/image"; // URL pour l'édition d'un projet existant
+
+
       console.log(url)
       let data = new FormData(form)
       console.log(data)
@@ -421,6 +428,9 @@ const init = () => {
       })
       .then((response) => {
           console.log(response)
+          if (response.data.redirect_url) {
+            window.location.href = response.data.redirect_url;
+        }
       })
       .catch((error) => {
           console.error(error)

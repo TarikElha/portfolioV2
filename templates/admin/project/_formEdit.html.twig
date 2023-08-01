@@ -1,0 +1,7 @@
+{{ form_start(form, {'attr': {'id': 'project_form', 'data-project-id' : project.id }}) }}
+    {{ form_widget(form) }}
+
+    <img width="400" src="/uploads/projects/{{ project.imageProjectName }}" alt="image project" id="imageProject">
+
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}
